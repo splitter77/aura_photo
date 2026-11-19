@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#000000">
+  <title>Appareil photo</title>
+  <script src="lib/aurakit.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="phone">
+    <!-- Barre du haut -->
+    <header id="top">
+      <span id="privacy-dot"></span>
+      <div id="rec-timer" hidden><span class="rec-dot"></span><span id="rec-time">00:00</span></div>
+      <button class="top-btn" id="flash-btn" aria-label="Flash">
+        <svg viewBox="0 0 40 40" id="flash-icon">
+          <path class="bolt" d="M17 4 L7 22 H15.5 L12.5 36 L27 15 H18.5 L22 4 Z"/>
+          <g class="badge"><circle cx="27" cy="29" r="7.2"/><text x="27" y="32.6">A</text></g>
+          <line class="slash" x1="6" y1="6" x2="32" y2="34"/>
+        </svg>
+      </button>
+      <button class="top-btn" id="motion-btn" aria-label="Photo animée">
+        <svg viewBox="0 0 40 40" id="motion-icon">
+          <circle class="ring" cx="20" cy="20" r="14"/>
+          <circle class="core" cx="20" cy="20" r="6.5"/>
+          <line class="slash" x1="7" y1="7" x2="33" y2="33"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Viseur 3:4 -->
+    <main id="viewfinder">
+      <video id="video" muted playsinline autoplay></video>
+      <canvas id="fake" hidden></canvas>
+      <div id="focus"></div>
+      <div id="shutter-flash"></div>
+      <div id="cam-msg" hidden></div>
+      <div id="zoom">
+        <button class="zoom-btn active" data-zoom="1"><span>1×</span></button>
+        <button class="zoom-btn" data-zoom="2"><span>2</span></button>
+      </div>
+    </main>
+
+    <!-- Commandes -->
+    <section id="controls">
+      <div id="shutter-row">
+        <button id="shutter" aria-label="Prendre une photo"><span id="shutter-inner"></span></button>
+        <button class="round-btn" id="more-btn" aria-label="Plus">
+          <svg viewBox="0 0 40 40"><g fill="#fff">
+            <circle cx="11" cy="15" r="3.2"/><circle cx="20" cy="15" r="3.2"/><circle cx="29" cy="15" r="3.2"/>
+            <circle cx="11" cy="25" r="3.2"/><circle cx="20" cy="25" r="3.2"/><circle cx="29" cy="25" r="3.2"/>
+          </g></svg>
+        </button>
+      </div>
+      <div id="bottom-row">
+        <button id="thumb" aria-label="Galerie"><img id="thumb-img" alt=""></button>
+        <div id="modes"><div id="mode-pill"></div><div id="mode-strip"></div></div>
+        <button class="round-btn" id="flip-btn" aria-label="Changer de caméra">
+          <svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.5 17 A11 11 0 0 1 29.5 13.5"/><path d="M30.5 7.5 V14 H24"/>
+            <path d="M30.5 23 A11 11 0 0 1 10.5 26.5"/><path d="M9.5 32.5 V26 H16"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Galerie -->
+    <div id="gallery" hidden>
+      <div id="g-top">
+        <button id="g-close">‹</button>
+        <span id="g-count"></span>
+        <button id="g-delete">Supprimer</button>
+      </div>
+      <div id="g-scroll"></div>
+      <div id="g-empty">Aucune photo</div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
